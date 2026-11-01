@@ -245,7 +245,7 @@ void STLPORT::CharString::resize(size_t dwNewSize)
 
 void STLPORT::CharString::allocate_string_buffer(size_t stringLength)
 {
-	if (stringLength == UINT_MAX)
+	if (stringLength == SIZE_MAX)
 	{
 		throw std::out_of_range("STLPORT::CharString");
 	}
