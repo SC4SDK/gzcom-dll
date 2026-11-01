@@ -3,7 +3,7 @@
  *
  * cIGZWinCombo.h
  *
- * Copyright (C) 2025 Nicholas Hayes
+ * Copyright (C) 2025, 2026 Nicholas Hayes
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -39,6 +39,19 @@ public:
 		Normal = 0,
 		Disabled = 1,
 		Highlighted = 2
+	};
+
+	struct tComboWinProcCommands
+	{
+		// All commands are received through a window procedure
+		// "Command" message, see tWinProcMessageTypes in cIGZWin.h.
+		// The command id is in data1.
+
+		enum eComboWinProcCommands : uint32_t
+		{
+			// The control id is in data2.
+			SelectionChanged = 0xe8711255,
+		};
 	};
 
 	virtual cIGZWin* AsIGZWin() = 0;
