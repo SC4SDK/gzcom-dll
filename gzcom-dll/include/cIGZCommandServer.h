@@ -72,6 +72,4 @@ class cIGZCommandServer : public cIGZUnknown
 		virtual bool ConvertStringToCommand(char const *pszCommandString, uint32_t nStringLen, uint32_t& dwCommandIDOut, cIGZCommandParameterSet*& pParamSetOut) = 0;
 		virtual bool ConvertCommandToString(uint32_t dwCommandID, cIGZCommandParameterSet *pParamSet, cIGZString& szStringOut) = 0;
 		virtual bool ConvertCommandOutputToString(cIGZCommandParameterSet *pParamSet, cIGZString& szStringOut) = 0;
-
-		virtual ~cIGZCommandServer() { }
 };

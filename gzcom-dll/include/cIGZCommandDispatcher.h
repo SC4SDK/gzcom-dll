@@ -32,6 +32,4 @@ class cIGZCommandDispatcher : public cIGZUnknown
 		virtual bool Shutdown(void) = 0;
 
 		virtual int32_t ExecuteCommand(uint32_t dwCommandID, cIGZCommandParameterSet* pParamUnknown, cIGZCommandParameterSet* pCommandParams) = 0;
-
-		virtual ~cIGZCommandDispatcher() { }
 };
