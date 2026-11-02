@@ -71,6 +71,15 @@ public:
 		Right = 2
 	};
 
+	struct tWinProcMessageTypes
+	{
+		enum eWinProcMessageTypes : uint32_t
+		{
+			// The control id is in data1, and the new value is in data2.
+			ValueChanged = 0xe8711255,
+		};
+	};
+
 	virtual cIGZWin* AsIGZWin() = 0;
 
 	virtual bool SetSpinnerType(tSpinnerType type) = 0;
