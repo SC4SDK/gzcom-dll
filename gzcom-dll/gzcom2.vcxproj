@@ -361,6 +361,7 @@
     <ClInclude Include="include\PersistResourceKeyFilterByTypeAndInstance.h" />
     <ClInclude Include="include\SC4AppPreferences.h" />
     <ClInclude Include="include\SC4AudioPreferences.h" />
+    <ClInclude Include="include\SC4AutoGamePause.h" />
     <ClInclude Include="include\SC4AutomataTemplates.h" />
     <ClInclude Include="include\SC4CellRegion.h" />
     <ClInclude Include="include\SC4DebugPreferences.h" />
@@ -418,6 +419,7 @@
     <ClCompile Include="src\PersistResourceKeyFilterByType.cpp" />
     <ClCompile Include="src\PersistResourceKeyFilterByTypeAndGroup.cpp" />
     <ClCompile Include="src\PersistResourceKeyFilterByTypeAndInstance.cpp" />
+    <ClCompile Include="src\SC4AutoGamePause.cpp" />
     <ClCompile Include="src\SC4String.cpp" />
     <ClCompile Include="src\SC4UI.cpp" />
     <ClCompile Include="src\SCLuaUtil.cpp" />

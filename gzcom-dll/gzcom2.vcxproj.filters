@@ -960,6 +960,9 @@
     <ClInclude Include="include\STLPORTCharString.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\SC4AutoGamePause.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cRZBaseString.cpp">
@@ -1056,6 +1059,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\STLPORTCharString.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SC4AutoGamePause.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
