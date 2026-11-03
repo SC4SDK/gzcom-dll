@@ -3,7 +3,7 @@
  *
  * SC4Vector.h
  *
- * Copyright (C) 2025 Nicholas Hayes
+ * Copyright (C) 2025, 2026 Nicholas Hayes
  * Copyright (C) 2025 memo
  *
  * This library is free software; you can redistribute it and/or
@@ -151,6 +151,11 @@ public:
 	{
 		destroy_contents(mpStart, size());
 		mpEnd = mpStart;
+	}
+
+	pointer data() const
+	{
+		return mpStart;
 	}
 
 	bool empty() const
