@@ -337,6 +337,7 @@
     <ClInclude Include="include\cS3DTextureBinding.h" />
     <ClInclude Include="include\cS3DVector2.h" />
     <ClInclude Include="include\cS3DVector3.h" />
+    <ClInclude Include="include\cIS3DResModel.h" />
     <ClInclude Include="include\cISC4EffectsCollection.h" />
     <ClInclude Include="include\cISC4ComponentEffect.h" />
     <ClInclude Include="include\SC4DrawAttributes.h" />
