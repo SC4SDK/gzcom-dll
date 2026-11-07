@@ -337,6 +337,7 @@
     <ClInclude Include="include\cS3DTextureBinding.h" />
     <ClInclude Include="include\cS3DVector2.h" />
     <ClInclude Include="include\cS3DVector3.h" />
+    <ClInclude Include="include\SC4DrawAttributes.h" />
     <ClInclude Include="include\cS3DTransform.h" />
     <ClInclude Include="include\cSC4BaseLotConfigurationFilter.h" />
     <ClInclude Include="include\cSC4BaseOccupantFilter.h" />

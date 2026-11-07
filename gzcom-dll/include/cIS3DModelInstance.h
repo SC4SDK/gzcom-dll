@@ -21,12 +21,12 @@
 
 #pragma once
 #include "cIGZUnknown.h"
+#include "SC4DrawAttributes.h"
 
 class cS3DBoundingBox;
 class cS3DTransform;
 class cIS3DResModel;
 class cSC4PickContext;
-class SC4DrawAttributes;
 class SC4DrawContext;
 
 static const uint32_t GZIID_cIS3DModelInstance = 0x26a68449;
@@ -52,7 +52,7 @@ public:
 	virtual int16_t GetProperties() = 0;
 	virtual void SetProperties(int16_t) = 0;
 
-	virtual SC4DrawAttributes* GetDrawAttributes() const = 0;
+	virtual SC4DrawAttributes GetDrawAttributes() const = 0;
 	virtual void SetDrawAttributes(SC4DrawAttributes&) = 0;
 
 	virtual void GetSortValue(uint32_t&) const = 0;
