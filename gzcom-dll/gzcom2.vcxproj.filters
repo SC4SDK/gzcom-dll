@@ -159,6 +159,21 @@
     <ClInclude Include="include\cS3DVector3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\cIS3DResModel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cISC4EffectsCollection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cISC4ComponentEffect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SC4DrawAttributes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cS3DTransform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="include\cISC4NetworkManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
