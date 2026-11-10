@@ -21,8 +21,9 @@
 
 #pragma once
 #include "cIGZWinProc.h"
+#include "cRZUnknown.h"
 
-class cRZBaseWinProc : public cIGZWinProc
+class cRZBaseWinProc : public cIGZWinProc, public cRZUnknown
 {
 protected:
 	cRZBaseWinProc();
@@ -30,9 +31,9 @@ protected:
 public:
 	// cIGZUnknown
 
-	bool QueryInterface(uint32_t riid, void** ppvObj);
-	uint32_t AddRef();
-	uint32_t Release();
+	bool QueryInterface(uint32_t riid, void** ppvObj) override;
+	uint32_t AddRef() override;
+	uint32_t Release() override;
 
 	// cIGZWinProc
 	// DoWinMessage is left as a pure virtual function to force derived classes to implement it.
@@ -43,7 +44,4 @@ public:
 	// It will be called if DoWinProcMessage returns false, our implementation follows the pattern
 	// used by SC4's window procedures in treating this override as function that always returns false.
 	bool DoWinMsg(cIGZWin* pWin, uint32_t dwMessageID, uint32_t data1, uint32_t data2, uint32_t data3) override;
-
-private:
-	uint32_t refCount;
 };
