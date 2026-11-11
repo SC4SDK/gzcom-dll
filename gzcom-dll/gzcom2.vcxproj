@@ -392,6 +392,7 @@
     <ClInclude Include="include\SC4ViewPreferences.h" />
     <ClInclude Include="include\SCLuaUtil.h" />
     <ClInclude Include="include\SCPropertyUtil.h" />
+    <ClInclude Include="include\ScriptedDialogWinProcBase.h" />
     <ClInclude Include="include\sGDMode.h" />
     <ClInclude Include="include\STLPORTCharString.h" />
     <ClInclude Include="include\StringResourceKey.h" />
@@ -429,6 +430,7 @@
     <ClCompile Include="src\SC4UI.cpp" />
     <ClCompile Include="src\SCLuaUtil.cpp" />
     <ClCompile Include="src\SCPropertyUtil.cpp" />
+    <ClCompile Include="src\ScriptedDialogWinProcBase.cpp" />
     <ClCompile Include="src\STLPORTCharString.cpp" />
     <ClCompile Include="src\StringResourceManager.cpp" />
   </ItemGroup>
