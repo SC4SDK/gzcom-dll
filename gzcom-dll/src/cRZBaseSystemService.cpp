@@ -3,7 +3,7 @@
  * 
  * cRZBaseSystemService.cpp
  * 
- * Copyright (C) 2024 Nicholas Hayes
+ * Copyright (C) 2024, 2026 Nicholas Hayes
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -22,11 +22,11 @@
 #include "cRZBaseSystemService.h"
 
 cRZBaseSystemService::cRZBaseSystemService(uint32_t serviceID, int32_t servicePriority)
-	: serviceID(serviceID),
+	: cRZUnknown(),
+	  serviceID(serviceID),
 	  servicePriority(servicePriority),
 	  serviceTickPriority(servicePriority),
-	  serviceRunning(false),
-	  refCount(0)
+	  serviceRunning(false)
 {
 }
 
@@ -39,30 +39,18 @@ bool cRZBaseSystemService::QueryInterface(uint32_t riid, void** ppvObj)
 
 		return true;
 	}
-	else if (riid == GZIID_cIGZUnknown)
-	{
-		*ppvObj = static_cast<cIGZUnknown*>(this);
-		AddRef();
-
-		return true;
-	}
-
-	*ppvObj = nullptr;
-	return false;
+	
+	return cRZUnknown::QueryInterface(riid, ppvObj);
 }
 
 uint32_t cRZBaseSystemService::AddRef()
 {
-	return ++refCount;
+	return cRZUnknown::AddRef();
 }
 
 uint32_t cRZBaseSystemService::Release()
 {
-	if (refCount > 0)
-	{
-		--refCount;
-	}
-	return refCount;
+	return cRZUnknown::Release();
 }
 
 uint32_t cRZBaseSystemService::GetServiceID()
