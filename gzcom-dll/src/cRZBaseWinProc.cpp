@@ -35,7 +35,7 @@ bool cRZBaseWinProc::QueryInterface(uint32_t riid, void** ppvObj)
         return true;
     }
     
-    return false;
+    return cRZUnknown::QueryInterface(riid, ppvObj);
 }
 
 uint32_t cRZBaseWinProc::AddRef()
