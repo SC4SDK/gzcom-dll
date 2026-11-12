@@ -39,10 +39,10 @@ public:
 	// cIGZSystemService
 
 	uint32_t GetServiceID() override;
-	cIGZSystemService* SetServiceID(uint32_t id) override;
+	void SetServiceID(uint32_t id) override;
 	int32_t GetServicePriority() override;
 	bool IsServiceRunning() override;
-	cIGZSystemService* SetServiceRunning(bool running) override;
+	void SetServiceRunning(bool running) override;
 	bool OnTick(uint32_t unknown1) override;
 	bool OnIdle(uint32_t unknown1) override;
 	int32_t GetServiceTickPriority() override;

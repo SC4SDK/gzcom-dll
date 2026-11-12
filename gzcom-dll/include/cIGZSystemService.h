@@ -4,7 +4,7 @@
  * cIGZSystemService.h
  *
  * Copyright (C) 2016 Nelson Gomez
- * Copyright (C) 2023, 2024 Nicholas Hayes
+ * Copyright (C) 2023, 2024, 2026 Nicholas Hayes
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -47,7 +47,7 @@ class cIGZSystemService : public cIGZUnknown
 		 * @param dwServiceId The ID to give this service
 		 * @return The "this" pointer
 		 */
-		virtual cIGZSystemService* SetServiceID(uint32_t dwServiceId) = 0;
+		virtual void SetServiceID(uint32_t dwServiceId) = 0;
 
 		/**
 		 * @return This service's priority. Lower values yield more priority
@@ -63,7 +63,7 @@ class cIGZSystemService : public cIGZUnknown
 		 * @brief Toggles whether or not the service is currently running
 		 * @return The "this" pointer
 		 */
-		virtual cIGZSystemService* SetServiceRunning(bool bRunning) = 0;
+		virtual void SetServiceRunning(bool bRunning) = 0;
 
 		/**
 		 * @brief A callback for post-framework initialization

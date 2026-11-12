@@ -58,10 +58,9 @@ uint32_t cRZBaseSystemService::GetServiceID()
 	return serviceID;
 }
 
-cIGZSystemService* cRZBaseSystemService::SetServiceID(uint32_t id)
+void cRZBaseSystemService::SetServiceID(uint32_t id)
 {
 	serviceID = id;
-	return this;
 }
 
 int32_t cRZBaseSystemService::GetServicePriority()
@@ -74,10 +73,9 @@ bool cRZBaseSystemService::IsServiceRunning()
 	return serviceRunning;
 }
 
-cIGZSystemService* cRZBaseSystemService::SetServiceRunning(bool running)
+void cRZBaseSystemService::SetServiceRunning(bool running)
 {
 	serviceRunning = running;
-	return this;
 }
 
 bool cRZBaseSystemService::OnTick(uint32_t unknown1)
