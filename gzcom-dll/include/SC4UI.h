@@ -29,6 +29,7 @@ class cGZPersistResourceKey;
 class cIGZWin;
 class cIGZWinMgr;
 class cIGZWinProc;
+struct StringResourceKey;
 
 namespace SC4UI
 {
@@ -153,4 +154,10 @@ namespace SC4UI
 	 * @param caption The caption.
 	 */
 	void ShowNotificationDialog(const std::string_view& message, const std::string_view& caption);
+	/**
+	 * @brief Shows a notification dialog with an OK button.
+	 * @param message The message string resource key.
+	 * @param caption The caption string resource key.
+	 */
+	void ShowNotificationDialog(const StringResourceKey& messageKey, const StringResourceKey& captionKey);
 }

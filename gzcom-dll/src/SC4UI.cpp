@@ -31,6 +31,8 @@
 #include "GZServPtrs.h"
 #include "ScriptedDialogWinProcBase.h"
 #include "SC4AutoGamePause.h"
+#include "StringResourceKey.h"
+#include "StringResourceManager.h"
 
 namespace
 {
@@ -355,4 +357,19 @@ void SC4UI::ShowNotificationDialog(const std::string_view& message, const std::s
 	cRZAutoRefCount<cIGZWinProc> winProc(new NotificationDialogWinProc(message, caption), cRZAutoRefCount<cIGZWinProc>::kAddRef);
 
 	ShowScriptedModalDialog(cGZPersistResourceKey(0, 0x96a006b0, 0xca8cbf0f), 0xaa8def97, winProc);
+}
+
+void SC4UI::ShowNotificationDialog(const StringResourceKey& messageKey, const StringResourceKey& captionKey)
+{
+	cRZAutoRefCount<cIGZString> message;
+
+	if (StringResourceManager::GetLocalizedString(messageKey, message))
+	{
+		cRZAutoRefCount<cIGZString> caption;
+
+		if (StringResourceManager::GetLocalizedString(captionKey, caption))
+		{
+			ShowNotificationDialog(*message, *caption);
+		}
+	}
 }
