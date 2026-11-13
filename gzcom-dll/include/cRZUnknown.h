@@ -91,6 +91,6 @@ class cRZUnknown : public cIGZUnknown
 		cRZUnknown() {
 			mnRefCount = 0;
 		}
-	private:
+
 		uint32_t mnRefCount;
 };
