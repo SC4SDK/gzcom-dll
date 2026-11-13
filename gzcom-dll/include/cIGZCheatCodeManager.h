@@ -4,6 +4,7 @@
  * cIGZCheatCodeManager.h
  *
  * Copyright (C) 2016 Nelson Gomez
+ * Copyright (C) 2026 Nicholas Hayes
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -72,41 +73,59 @@ class cIGZCheatCodeManager : public cIGZUnknown
 		/**
 		 * @brief Allows a message target to receive cheat code messages
 		 * @param pTarget The message target to subscribe to these messages
-		 * @param dwMessageID Reserved; should simply be set to zero
+		 * @param dwCheatID The ID of the cheat code to be notified about; or 0 to be notified about all cheat codes
 		 * @return Whether the target was successfully subscribed
+		 *
+		 * SC4 typically uses a dwCheatID value of 0 to allow a single subscription to handle all cheat codes
+		 * registered by a specific component.
 		 *
 		 * Subscribing to cheat code notifications via this method will result
 		 * in messages of type cGZMessage being sent to the subscriber.
 		 */
-		virtual bool AddNotification(cIGZMessageTarget* pTarget, uint32_t dwMessageID) = 0;
+		virtual bool AddNotification(cIGZMessageTarget* pTarget, uint32_t dwCheatID) = 0;
 
 		/**
 		 * @brief Unsubscribes a message target from cheat code notifications
 		 * @param pTarget The message target to unsubscribe
-		 * @param dwMessageID Reserved; should simply be set to zero
+		 * @param dwCheatID The id of the cheat code to be notified about; or 0 to be notified about all cheat codes
 		 * @return Whether the target was successfully unsubscribed
+		 *
+		 * SC4 typically uses a dwCheatID value of 0 to allow a single subscription to handle all cheat codes
+		 * registered by a specific component.
 		 *
 		 * Only works for subscribers awaiting cGZMessage types of messages.
 		 * @see AddNotification(cIGZMessageTarget* pTarget, uint32_t dwMessageID)
 		 */
-		virtual bool RemoveNotification(cIGZMessageTarget* pTarget, uint32_t dwMessageID) = 0;
+		virtual bool RemoveNotification(cIGZMessageTarget* pTarget, uint32_t dwCheatID) = 0;
 
 		/**
-		 * @see AddNotification(cIGZMessageTarget* pTarget, uint32_t dwMessageID)
+		 * @brief Allows a message target to receive cheat code messages
+		 * @param pTarget The message target to subscribe to these messages
+		 * @param dwCheatID The ID of the cheat code to be notified about; or 0 to be notified about all cheat codes
+		 * @return Whether the target was successfully subscribed
+		 *
+		 * SC4 typically uses a dwCheatID value of 0 to allow a single subscription to handle all cheat codes
+		 * registered by a specific component.
 		 *
 		 * Subscribes to cheat code notifications, expecting
 		 * cIGZMessage2Standard messages. This is the preferred method of
 		 * getting cheat notifications.
 		 */
-		virtual bool AddNotification2(cIGZMessageTarget2* pTarget, uint32_t dwMessageID) = 0;
+		virtual bool AddNotification2(cIGZMessageTarget2* pTarget, uint32_t dwCheatID) = 0;
 
 		/**
-		 * @see RemoveNotification(cIGZMessageTarget* pTarget, uint32_t dwMessageID)
+		 * @brief Unsubscribes a message target from cheat code notifications
+		 * @param pTarget The message target to unsubscribe
+		 * @param dwCheatID The id of the cheat code to be notified about; or 0 to be notified about all cheat codes
+		 * @return Whether the target was successfully unsubscribed
+		 *
+		 * SC4 typically uses a dwCheatID value of 0 to allow a single subscription to handle all cheat codes
+		 * registered by a specific component.
 		 *
 		 * Unsubscribes from cheat code notifications for directors that are
 		 * cIGZMessageTarget2 implementations only.
 		 */
-		virtual bool RemoveNotification2(cIGZMessageTarget2* pTarget, uint32_t dwMessageID) = 0;
+		virtual bool RemoveNotification2(cIGZMessageTarget2* pTarget, uint32_t dwCheatID) = 0;
 
 		/**
 		 * @brief Toggles whether or not to keep track of used cheats
