@@ -3,7 +3,7 @@
  *
  * cRZBaseVariant.h
  *
- * Copyright (C) 2023, 2024, 2025 Nicholas Hayes
+ * Copyright (C) 2023, 2024, 2025, 2026 Nicholas Hayes
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -22,8 +22,9 @@
 #pragma once
 
 #include "cIGZVariant.h"
+#include "cRZUnknown.h"
 
-class cRZBaseVariant : public cIGZVariant
+class cRZBaseVariant : public cIGZVariant, public cRZUnknown
 {
 public:
 
@@ -50,11 +51,13 @@ public:
 	cRZBaseVariant& operator=(const cRZBaseVariant& other);
 	cRZBaseVariant& operator=(cRZBaseVariant&& other) noexcept;
 
+	// cIGZUnknown
+
 	bool QueryInterface(uint32_t riid, void** ppvObj);
-
 	uint32_t AddRef();
-
 	uint32_t Release();
+
+	// cIGZVariant
 
 	uint16_t GetType() const;
 	uint32_t GetCount() const;
@@ -227,5 +230,4 @@ private:
 	} data;
 	cIGZVariant::Type type;
 	uint32_t count;
-	uint32_t refCount;
 };

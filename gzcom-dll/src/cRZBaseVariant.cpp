@@ -3,7 +3,7 @@
  *
  * cRZBaseVariant.cpp
  *
- * Copyright (C) 2023, 2024, 2025 Nicholas Hayes
+ * Copyright (C) 2023, 2024, 2025, 2026 Nicholas Hayes
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -24,108 +24,93 @@
 #include <cstdint>
 #include <string>
 
-static const uint32_t GZIID_cRZBaseVariant = 0x48122352;
-
 cRZBaseVariant::cRZBaseVariant()
 	: type(cIGZVariant::Type::Empty),
-	  count(0),
-	  refCount(0)
+	  count(0)
 {
 	data.Uint64 = 0;
 }
 
 cRZBaseVariant::cRZBaseVariant(bool value)
 	: type(cIGZVariant::Type::Bool),
-	  count(0),
-	  refCount(0)
+	  count(0)
 {
 	data.Bool = value;
 }
 
 cRZBaseVariant::cRZBaseVariant(uint16_t value)
 	: type(cIGZVariant::Type::Uint16),
-	  count(0),
-	  refCount(0)
+	  count(0)
 {
 	data.Uint16 = value;
 }
 
 cRZBaseVariant::cRZBaseVariant(int16_t value)
 	: type(cIGZVariant::Type::Sint16),
-	  count(0),
-	  refCount(0)
+	  count(0)
 {
 	data.Sint16 = value;
 }
 
 cRZBaseVariant::cRZBaseVariant(uint32_t value)
 	: type(cIGZVariant::Type::Uint32),
-	  count(0),
-	  refCount(0)
+	  count(0)
 {
 	data.Uint32 = value;
 }
 
 cRZBaseVariant::cRZBaseVariant(int32_t value)
 	: type(cIGZVariant::Type::Sint32),
-	  count(0),
-	  refCount(0)
+	  count(0)
 {
 	data.Sint32 = value;
 }
 
 cRZBaseVariant::cRZBaseVariant(uint64_t value)
 	: type(cIGZVariant::Type::Uint64),
-	  count(0),
-	  refCount(0)
+	  count(0)
 {
 	data.Uint64 = value;
 }
 
 cRZBaseVariant::cRZBaseVariant(int64_t value)
 	: type(cIGZVariant::Type::Sint64),
-	  count(0),
-	  refCount(0)
+	  count(0)
 {
 	data.Sint64 = value;
 }
 
 cRZBaseVariant::cRZBaseVariant(float value)
 	: type(cIGZVariant::Type::Float32),
-	  count(0),
-	  refCount(0)
+	  count(0)
 {
 	data.Float32 = value;
 }
 
 cRZBaseVariant::cRZBaseVariant(double value)
 	: type(cIGZVariant::Type::Float64),
-	  count(0),
-	  refCount(0)
+	  count(0)
 {
 	data.Float64 = value;
 }
 
 cRZBaseVariant::cRZBaseVariant(const cIGZString& value)
 	: type(cIGZVariant::Type::Empty),
-	  count(0),
-	  refCount(0)
+	  count(0)
 {
 	RefRZChar(const_cast<char*>(value.Data()), value.Strlen());
 }
 
 cRZBaseVariant::cRZBaseVariant(const cIGZVariant& other)
 	: type(cIGZVariant::Type::Empty),
-	  count(0),
-	  refCount(0)
+	  count(0)
 {
 	CopyFrom(other);
 }
 
 cRZBaseVariant::cRZBaseVariant(const cIGZVariant* other)
 	: type(cIGZVariant::Type::Empty),
-	  count(0),
-	  refCount(0)
+	  count(0)
 {
 	if (other)
 	{
@@ -139,16 +124,14 @@ cRZBaseVariant::cRZBaseVariant(const cIGZVariant* other)
 
 cRZBaseVariant::cRZBaseVariant(const cRZBaseVariant& other)
 	: type(cIGZVariant::Type::Empty),
-	  count(0),
-	  refCount(0)
+	  count(0)
 {
 	CopyFrom(other);
 }
 
 cRZBaseVariant::cRZBaseVariant(cRZBaseVariant&& other) noexcept
 	: type(other.type),
-	  count(other.count),
-	  refCount(other.refCount)
+	  count(other.count)
 {
 	operator=(std::move(other));
 }
@@ -188,7 +171,7 @@ cRZBaseVariant& cRZBaseVariant::operator=(cRZBaseVariant&& other) noexcept
 
 	type = other.type;
 	count = other.count;
-	refCount = other.refCount;
+	mnRefCount = other.mnRefCount;
 
 	switch (static_cast<cIGZVariant::Type>(other.GetType()))
 	{
@@ -265,51 +248,32 @@ cRZBaseVariant& cRZBaseVariant::operator=(cRZBaseVariant&& other) noexcept
 	other.type = cIGZVariant::Type::Empty;
 	other.count = 0;
 	other.data.Uint64 = 0;
-	other.refCount = 0;
+	other.mnRefCount = 0;
 
 	return *this;
 }
 
 bool cRZBaseVariant::QueryInterface(uint32_t riid, void** ppvObj)
 {
-	if (riid == GZIID_cRZBaseVariant)
+	if (riid == GZIID_cIGZVariant)
 	{
-		AddRef();
-		*ppvObj = this;
-
-		return true;
-	}
-	else if (riid == GZIID_cIGZVariant)
-	{
-		AddRef();
 		*ppvObj = static_cast<cIGZVariant*>(this);
-
-		return true;
-	}
-	else if (riid == GZIID_cIGZUnknown)
-	{
 		AddRef();
-		*ppvObj = static_cast<cIGZUnknown*>(this);
 
 		return true;
 	}
-
-	return false;
+	
+	return cRZUnknown::QueryInterface(riid, ppvObj);
 }
 
 uint32_t cRZBaseVariant::AddRef()
 {
-	return ++refCount;
+	return cRZUnknown::AddRef();
 }
 
 uint32_t cRZBaseVariant::Release()
 {
-	if (refCount > 0)
-	{
-		--refCount;
-	}
-
-	return refCount;
+	return cRZUnknown::Release();
 }
 
 uint16_t cRZBaseVariant::GetType() const
