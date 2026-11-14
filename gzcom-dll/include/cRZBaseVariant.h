@@ -27,7 +27,6 @@
 class cRZBaseVariant : public cIGZVariant, public cRZUnknown
 {
 public:
-
 	cRZBaseVariant();
 	cRZBaseVariant(bool);
 	cRZBaseVariant(uint16_t);
@@ -205,7 +204,7 @@ public:
 	void RefIGZUnknown(cIGZUnknown* value);
 
 private:
-
+	bool ConvertToString(cIGZString& output) const;
 	void Destroy();
 	void SetType(cIGZVariant::Type newType, uint32_t count = 0);
 

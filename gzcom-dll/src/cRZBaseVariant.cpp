@@ -21,8 +21,53 @@
 
 #include "cRZBaseVariant.h"
 #include "cIGZString.h"
+#include "cRZAutoRefCount.h"
+#include "SC4String.h"
 #include <cstdint>
 #include <string>
+#include <vector>
+
+namespace
+{
+	void PointerToString(void* ptr, cIGZString& dest)
+	{
+		dest.Sprintf("0x%08X", reinterpret_cast<uintptr_t>(ptr));
+	}
+
+	char RZUnicodeCharToRZChar(uint16_t unicodeChar)
+	{
+		// A simple mapping from RZUnicodeChar (a.k.a. UTF-16LE) to US-ASCII.
+		// This implementation is more conservative than SC4's own version as
+		// it ignores characters outside of the printable US-ASCII range.
+
+		return unicodeChar >= 0x20 && unicodeChar <= 0x7e ? static_cast<char>(unicodeChar) : '?';
+	}
+
+	void RZUnicodeCharArrayToString(uint16_t const* pUnicodeChars, uint32_t count, cIGZString& dest)
+	{
+		if (count == 0)
+		{
+			dest.Erase(0, UINT_MAX);
+		}
+		else if (count == 1)
+		{
+			char converted = RZUnicodeCharToRZChar(pUnicodeChars[0]);
+			dest.FromChar(&converted, 1);
+		}
+		else
+		{
+			std::vector<char> convertedChars;
+			convertedChars.reserve(count);
+
+			for (uint32_t i = 0; i < count; i++)
+			{
+				convertedChars.push_back(RZUnicodeCharToRZChar(pUnicodeChars[i]));
+			}
+
+			dest.FromChar(convertedChars.data(), count);
+		}
+	}
+}
 
 cRZBaseVariant::cRZBaseVariant()
 	: type(cIGZVariant::Type::Empty),
@@ -755,12 +800,23 @@ void cRZBaseVariant::SetValVoidPtr(void* value)
 
 bool cRZBaseVariant::CreateValString(cIGZString** value) const
 {
+	SC4String* pSC4String = new SC4String();
+	pSC4String->AddRef();
+
+	if (ConvertToString(*pSC4String))
+	{
+		*value = pSC4String;
+		return true;
+	}
+
+	pSC4String->Release();
+	*value = nullptr;
 	return false;
 }
 
 bool cRZBaseVariant::GetValString(cIGZString& value) const
 {
-	return false;
+	return ConvertToString(value);
 }
 
 void cRZBaseVariant::SetValString(cIGZString const& value)
@@ -1421,6 +1477,117 @@ void cRZBaseVariant::RefIGZUnknown(cIGZUnknown* value)
 	if (value)
 	{
 		value->AddRef();
+	}
+}
+
+bool cRZBaseVariant::ConvertToString(cIGZString& output) const
+{
+	if (type == cIGZVariant::Empty)
+	{
+		output.Erase(0, UINT_MAX);
+		return true;
+	}
+	else if (type == cIGZVariant::IGZUnknown)
+	{
+		if (data.IGZUnknown)
+		{
+			cRZAutoRefCount<cIGZString> pString;
+
+			if (data.IGZUnknown->QueryInterface(GZIID_cIGZString, pString.AsPPVoid()))
+			{
+				output.Copy(*pString);
+			}
+			else
+			{
+				PointerToString(data.IGZUnknown, output);
+			}
+		}
+		else
+		{
+			output.FromChar("0");
+		}
+		return true;
+	}
+	else
+	{
+		if ((static_cast<uint16_t>(type) & cIGZVariant::TypeArray) != 0)
+		{
+			if (count == 0 || !data.VoidPtr)
+			{
+				output.FromChar("0");
+			}
+			else
+			{
+				switch (type)
+				{
+				case cIGZVariant::CharArray:
+				case cIGZVariant::RZCharArray:
+					output.FromChar(static_cast<const char*>(data.VoidPtr), count);
+					break;
+				case cIGZVariant::RZUnicodeCharArray:
+					RZUnicodeCharArrayToString(static_cast<const uint16_t*>(data.VoidPtr), count, output);
+					break;
+				default:
+					PointerToString(data.VoidPtr, output);
+					break;
+				}
+			}
+			return true;
+		}
+		else
+		{
+			switch (type)
+			{
+			case cIGZVariant::Bool:
+				output.Sprintf("%d", static_cast<int32_t>(data.Bool));
+				break;
+			case cIGZVariant::Uint8:
+				output.Sprintf("%u", static_cast<uint32_t>(data.Uint8));
+				break;
+			case cIGZVariant::Sint8:
+				output.Sprintf("%d", static_cast<int32_t>(data.Sint8));
+				break;
+			case cIGZVariant::Uint16:
+				output.Sprintf("%u", static_cast<uint32_t>(data.Uint16));
+				break;
+			case cIGZVariant::Sint16:
+				output.Sprintf("%d", static_cast<int32_t>(data.Sint16));
+				break;
+			case cIGZVariant::Uint32:
+				output.Sprintf("%u", data.Uint32);
+				break;
+			case cIGZVariant::Sint32:
+				output.Sprintf("%d", data.Sint32);
+				break;
+			case cIGZVariant::Uint64:
+				output.Sprintf("%llu", data.Uint64);
+				break;
+			case cIGZVariant::Sint64:
+				output.Sprintf("%lld", data.Sint64);
+				break;
+			case cIGZVariant::Float32:
+				output.Sprintf("%f", static_cast<double>(data.Float32));
+				break;
+			case cIGZVariant::Float64:
+				output.Sprintf("%f", data.Float64);
+				break;
+			case cIGZVariant::Char:
+				output.FromChar(&data.Char, 1);
+				break;
+			case cIGZVariant::RZChar:
+				output.FromChar(&data.RZChar, 1);
+				break;
+			case cIGZVariant::RZUnicodeChar:
+				output.Sprintf("%c", RZUnicodeCharToRZChar(data.RZUnicodeChar));
+				break;
+			case cIGZVariant::VoidPtr:
+				PointerToString(data.VoidPtr, output);
+				break;
+			default:
+				return false;
+			}
+			return true;
+		}
 	}
 }
 
