@@ -35,6 +35,7 @@ cRZBaseVariant::cRZBaseVariant(bool value)
 	: type(cIGZVariant::Type::Bool),
 	  count(0)
 {
+	data.Uint64 = 0;
 	data.Bool = value;
 }
 
@@ -42,6 +43,7 @@ cRZBaseVariant::cRZBaseVariant(uint16_t value)
 	: type(cIGZVariant::Type::Uint16),
 	  count(0)
 {
+	data.Uint64 = 0;
 	data.Uint16 = value;
 }
 
@@ -49,6 +51,7 @@ cRZBaseVariant::cRZBaseVariant(int16_t value)
 	: type(cIGZVariant::Type::Sint16),
 	  count(0)
 {
+	data.Uint64 = 0;
 	data.Sint16 = value;
 }
 
@@ -56,6 +59,7 @@ cRZBaseVariant::cRZBaseVariant(uint32_t value)
 	: type(cIGZVariant::Type::Uint32),
 	  count(0)
 {
+	data.Uint64 = 0;
 	data.Uint32 = value;
 }
 
@@ -63,6 +67,7 @@ cRZBaseVariant::cRZBaseVariant(int32_t value)
 	: type(cIGZVariant::Type::Sint32),
 	  count(0)
 {
+	data.Uint64 = 0;
 	data.Sint32 = value;
 }
 
@@ -70,6 +75,7 @@ cRZBaseVariant::cRZBaseVariant(uint64_t value)
 	: type(cIGZVariant::Type::Uint64),
 	  count(0)
 {
+	data.Uint64 = 0;
 	data.Uint64 = value;
 }
 
@@ -77,6 +83,7 @@ cRZBaseVariant::cRZBaseVariant(int64_t value)
 	: type(cIGZVariant::Type::Sint64),
 	  count(0)
 {
+	data.Uint64 = 0;
 	data.Sint64 = value;
 }
 
@@ -84,6 +91,7 @@ cRZBaseVariant::cRZBaseVariant(float value)
 	: type(cIGZVariant::Type::Float32),
 	  count(0)
 {
+	data.Uint64 = 0;
 	data.Float32 = value;
 }
 
@@ -91,6 +99,7 @@ cRZBaseVariant::cRZBaseVariant(double value)
 	: type(cIGZVariant::Type::Float64),
 	  count(0)
 {
+	data.Uint64 = 0;
 	data.Float64 = value;
 }
 
@@ -98,6 +107,7 @@ cRZBaseVariant::cRZBaseVariant(const cIGZString& value)
 	: type(cIGZVariant::Type::Empty),
 	  count(0)
 {
+	data.Uint64 = 0;
 	RefRZChar(const_cast<char*>(value.Data()), value.Strlen());
 }
 
