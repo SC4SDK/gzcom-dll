@@ -769,11 +769,40 @@ void cRZBaseVariant::SetValString(cIGZString const& value)
 
 bool cRZBaseVariant::GetValVoid(void* value, uint32_t& length) const
 {
+	if (type == cIGZVariant::VoidArray)
+	{
+		if (length > count)
+		{
+			length = count;
+		}
+
+		memmove(value, data.VoidPtr, length);
+		return true;
+	}
+
 	return false;
 }
 
 void cRZBaseVariant::SetValVoid(void* value, uint32_t length)
 {
+	if (type == cIGZVariant::VoidArray && length == count && data.VoidPtr != nullptr)
+	{
+		memmove(data.VoidPtr, value, length);
+	}
+	else
+	{
+		Destroy();
+
+		data.VoidPtr = new uint8_t[length];
+
+		if (value != nullptr)
+		{
+			memmove(data.VoidPtr, value, length);
+		}
+
+		type = cIGZVariant::VoidArray;
+		count = length;
+	}
 }
 
 bool cRZBaseVariant::GetValUnknown(cIGZUnknown** outValue)
