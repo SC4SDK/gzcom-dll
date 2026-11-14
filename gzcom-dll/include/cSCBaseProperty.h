@@ -30,9 +30,18 @@ public:
 
 	cSCBaseProperty();
 	cSCBaseProperty(uint32_t propertyID);
+	cSCBaseProperty(uint32_t propertyID, bool value);
+	cSCBaseProperty(uint32_t propertyID, uint8_t value);
+	cSCBaseProperty(uint32_t propertyID, int8_t value);
+	cSCBaseProperty(uint32_t propertyID, uint16_t value);
+	cSCBaseProperty(uint32_t propertyID, int16_t value);
 	cSCBaseProperty(uint32_t propertyID, uint32_t value);
 	cSCBaseProperty(uint32_t propertyID, int32_t value);
+	cSCBaseProperty(uint32_t propertyID, uint64_t value);
+	cSCBaseProperty(uint32_t propertyID, int64_t value);
 	cSCBaseProperty(uint32_t propertyID, float value);
+	cSCBaseProperty(uint32_t propertyID, double value);
+	cSCBaseProperty(uint32_t propertyID, cIGZString const& value);
 	cSCBaseProperty(uint32_t propertyID, cIGZVariant const& propertyValue);
 	cSCBaseProperty(uint32_t propertyID, cIGZVariant const* propertyValue);
 

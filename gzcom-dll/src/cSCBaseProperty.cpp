@@ -36,6 +36,31 @@ cSCBaseProperty::cSCBaseProperty(uint32_t propertyID)
 {
 }
 
+cSCBaseProperty::cSCBaseProperty(uint32_t propertyID, bool value)
+	: propertyID(propertyID), propertyValue(value)
+{
+}
+
+cSCBaseProperty::cSCBaseProperty(uint32_t propertyID, uint8_t value)
+	: propertyID(propertyID), propertyValue(value)
+{
+}
+
+cSCBaseProperty::cSCBaseProperty(uint32_t propertyID, int8_t value)
+	: propertyID(propertyID), propertyValue(value)
+{
+}
+
+cSCBaseProperty::cSCBaseProperty(uint32_t propertyID, uint16_t value)
+	: propertyID(propertyID), propertyValue(value)
+{
+}
+
+cSCBaseProperty::cSCBaseProperty(uint32_t propertyID, int16_t value)
+	: propertyID(propertyID), propertyValue(value)
+{
+}
+
 cSCBaseProperty::cSCBaseProperty(uint32_t propertyID, uint32_t value)
 	: propertyID(propertyID), propertyValue(value)
 {
@@ -46,7 +71,27 @@ cSCBaseProperty::cSCBaseProperty(uint32_t propertyID, int32_t value)
 {
 }
 
+cSCBaseProperty::cSCBaseProperty(uint32_t propertyID, uint64_t value)
+	: propertyID(propertyID), propertyValue(value)
+{
+}
+
+cSCBaseProperty::cSCBaseProperty(uint32_t propertyID, int64_t value)
+	: propertyID(propertyID), propertyValue(value)
+{
+}
+
 cSCBaseProperty::cSCBaseProperty(uint32_t propertyID, float value)
+	: propertyID(propertyID), propertyValue(value)
+{
+}
+
+cSCBaseProperty::cSCBaseProperty(uint32_t propertyID, double value)
+	: propertyID(propertyID), propertyValue(value)
+{
+}
+
+cSCBaseProperty::cSCBaseProperty(uint32_t propertyID, cIGZString const& value)
 	: propertyID(propertyID), propertyValue(value)
 {
 }
