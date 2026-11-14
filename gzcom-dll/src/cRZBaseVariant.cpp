@@ -458,8 +458,10 @@ bool cRZBaseVariant::CopyFrom(cIGZVariant const& other)
 
 bool cRZBaseVariant::CreateCopy(cIGZVariant** value) const
 {
-	*value = new cRZBaseVariant(*this);
+	cRZBaseVariant* pCopy = new cRZBaseVariant(*this);
+	pCopy->AddRef();
 
+	*value = pCopy;
 	return true;
 }
 
