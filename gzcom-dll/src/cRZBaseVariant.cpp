@@ -998,7 +998,7 @@ void cRZBaseVariant::RefBool(bool const* value, uint32_t length)
 {
 	if (type == cIGZVariant::Type::BoolArray && count == length && value && data.VoidPtr)
 	{
-		memcpy(data.VoidPtr, value, length * sizeof(bool));
+		memmove(data.VoidPtr, value, length * sizeof(bool));
 	}
 	else
 	{
@@ -1009,7 +1009,7 @@ void cRZBaseVariant::RefBool(bool const* value, uint32_t length)
 		if (value && length > 0)
 		{
 			data.VoidPtr = operator new[](dataLength);
-			memcpy(data.VoidPtr, value, dataLength);
+			memmove(data.VoidPtr, value, dataLength);
 		}
 	}
 }
@@ -1023,7 +1023,7 @@ void cRZBaseVariant::RefUint8(uint8_t const* value, uint32_t length)
 {
 	if (type == cIGZVariant::Type::Uint8Array && count == length && value && data.VoidPtr)
 	{
-		memcpy(data.VoidPtr, value, length * sizeof(uint8_t));
+		memmove(data.VoidPtr, value, length * sizeof(uint8_t));
 	}
 	else
 	{
@@ -1034,7 +1034,7 @@ void cRZBaseVariant::RefUint8(uint8_t const* value, uint32_t length)
 		if (value && length > 0)
 		{
 			data.VoidPtr = operator new[](dataLength);
-			memcpy(data.VoidPtr, value, dataLength);
+			memmove(data.VoidPtr, value, dataLength);
 		}
 	}
 }
@@ -1048,7 +1048,7 @@ void cRZBaseVariant::RefSint8(int8_t const* value, uint32_t length)
 {
 	if (type == cIGZVariant::Type::Sint8Array && count == length && value && data.VoidPtr)
 	{
-		memcpy(data.VoidPtr, value, length * sizeof(int8_t));
+		memmove(data.VoidPtr, value, length * sizeof(int8_t));
 	}
 	else
 	{
@@ -1059,7 +1059,7 @@ void cRZBaseVariant::RefSint8(int8_t const* value, uint32_t length)
 		if (value && length > 0)
 		{
 			data.VoidPtr = operator new[](dataLength);
-			memcpy(data.VoidPtr, value, dataLength);
+			memmove(data.VoidPtr, value, dataLength);
 		}
 	}
 }
@@ -1073,7 +1073,7 @@ void cRZBaseVariant::RefUint16(uint16_t const* value, uint32_t length)
 {
 	if (type == cIGZVariant::Type::Uint16Array && count == length && value && data.VoidPtr)
 	{
-		memcpy(data.VoidPtr, value, length * sizeof(uint16_t));
+		memmove(data.VoidPtr, value, length * sizeof(uint16_t));
 	}
 	else
 	{
@@ -1084,7 +1084,7 @@ void cRZBaseVariant::RefUint16(uint16_t const* value, uint32_t length)
 		if (value && length > 0)
 		{
 			data.VoidPtr = operator new[](dataLength);
-			memcpy(data.VoidPtr, value, dataLength);
+			memmove(data.VoidPtr, value, dataLength);
 		}
 	}
 }
@@ -1098,7 +1098,7 @@ void cRZBaseVariant::RefSint16(int16_t const* value, uint32_t length)
 {
 	if (type == cIGZVariant::Type::Sint16Array && count == length && value && data.VoidPtr)
 	{
-		memcpy(data.VoidPtr, value, length * sizeof(int16_t));
+		memmove(data.VoidPtr, value, length * sizeof(int16_t));
 	}
 	else
 	{
@@ -1109,7 +1109,7 @@ void cRZBaseVariant::RefSint16(int16_t const* value, uint32_t length)
 			const size_t dataLength = static_cast<size_t>(length) * sizeof(int16_t);
 
 			data.VoidPtr = operator new[](dataLength);
-			memcpy(data.VoidPtr, value, dataLength);
+			memmove(data.VoidPtr, value, dataLength);
 		}
 	}
 }
@@ -1123,7 +1123,7 @@ void cRZBaseVariant::RefUint32(uint32_t const* value, uint32_t length)
 {
 	if (type == cIGZVariant::Type::Uint32Array && count == length && value && data.VoidPtr)
 	{
-		memcpy(data.VoidPtr, value, length * sizeof(uint32_t));
+		memmove(data.VoidPtr, value, length * sizeof(uint32_t));
 	}
 	else
 	{
@@ -1134,7 +1134,7 @@ void cRZBaseVariant::RefUint32(uint32_t const* value, uint32_t length)
 			const size_t dataLength = static_cast<size_t>(length) * sizeof(uint32_t);
 
 			data.VoidPtr = operator new[](dataLength);
-			memcpy(data.VoidPtr, value, dataLength);
+			memmove(data.VoidPtr, value, dataLength);
 		}
 	}
 }
@@ -1148,7 +1148,7 @@ void cRZBaseVariant::RefSint32(int32_t const* value, uint32_t length)
 {
 	if (type == cIGZVariant::Type::Sint32Array && count == length && value && data.VoidPtr)
 	{
-		memcpy(data.VoidPtr, value, length * sizeof(int32_t));
+		memmove(data.VoidPtr, value, length * sizeof(int32_t));
 	}
 	else
 	{
@@ -1159,7 +1159,7 @@ void cRZBaseVariant::RefSint32(int32_t const* value, uint32_t length)
 			const size_t dataLength = static_cast<size_t>(length) * sizeof(int32_t);
 
 			data.VoidPtr = operator new[](dataLength);
-			memcpy(data.VoidPtr, value, dataLength);
+			memmove(data.VoidPtr, value, dataLength);
 		}
 	}
 }
@@ -1173,7 +1173,7 @@ void cRZBaseVariant::RefUint64(uint64_t const* value, uint32_t length)
 {
 	if (type == cIGZVariant::Type::Uint64Array && count == length && value && data.VoidPtr)
 	{
-		memcpy(data.VoidPtr, value, length * sizeof(uint64_t));
+		memmove(data.VoidPtr, value, length * sizeof(uint64_t));
 	}
 	else
 	{
@@ -1184,7 +1184,7 @@ void cRZBaseVariant::RefUint64(uint64_t const* value, uint32_t length)
 			const size_t dataLength = static_cast<size_t>(length) * sizeof(uint64_t);
 
 			data.VoidPtr = operator new[](dataLength);
-			memcpy(data.VoidPtr, value, dataLength);
+			memmove(data.VoidPtr, value, dataLength);
 		}
 	}
 }
@@ -1198,7 +1198,7 @@ void cRZBaseVariant::RefSint64(int64_t const* value, uint32_t length)
 {
 	if (type == cIGZVariant::Type::Sint64Array && count == length && value && data.VoidPtr)
 	{
-		memcpy(data.VoidPtr, value, length * sizeof(int64_t));
+		memmove(data.VoidPtr, value, length * sizeof(int64_t));
 	}
 	else
 	{
@@ -1209,7 +1209,7 @@ void cRZBaseVariant::RefSint64(int64_t const* value, uint32_t length)
 			const size_t dataLength = static_cast<size_t>(length) * sizeof(int64_t);
 
 			data.VoidPtr = operator new[](dataLength);
-			memcpy(data.VoidPtr, value, dataLength);
+			memmove(data.VoidPtr, value, dataLength);
 		}
 	}
 }
@@ -1223,7 +1223,7 @@ void cRZBaseVariant::RefFloat32(float const* value, uint32_t length)
 {
 	if (type == cIGZVariant::Type::Float32Array && count == length && value && data.VoidPtr)
 	{
-		memcpy(data.VoidPtr, value, length * sizeof(float));
+		memmove(data.VoidPtr, value, length * sizeof(float));
 	}
 	else
 	{
@@ -1234,7 +1234,7 @@ void cRZBaseVariant::RefFloat32(float const* value, uint32_t length)
 			const size_t dataLength = static_cast<size_t>(length) * sizeof(float);
 
 			data.VoidPtr = operator new[](dataLength);
-			memcpy(data.VoidPtr, value, dataLength);
+			memmove(data.VoidPtr, value, dataLength);
 		}
 	}
 }
@@ -1248,7 +1248,7 @@ void cRZBaseVariant::RefFloat64(double const* value, uint32_t length)
 {
 	if (type == cIGZVariant::Type::Float64Array && count == length && value && data.VoidPtr)
 	{
-		memcpy(data.VoidPtr, value, length * sizeof(double));
+		memmove(data.VoidPtr, value, length * sizeof(double));
 	}
 	else
 	{
@@ -1259,7 +1259,7 @@ void cRZBaseVariant::RefFloat64(double const* value, uint32_t length)
 			const size_t dataLength = static_cast<size_t>(length) * sizeof(double);
 
 			data.VoidPtr = operator new[](dataLength);
-			memcpy(data.VoidPtr, value, dataLength);
+			memmove(data.VoidPtr, value, dataLength);
 		}
 	}
 }
@@ -1273,7 +1273,7 @@ void cRZBaseVariant::RefChar(char const* value, uint32_t length)
 {
 	if (type == cIGZVariant::Type::CharArray && count == length && value && data.VoidPtr)
 	{
-		memcpy(data.VoidPtr, value, length * sizeof(char));
+		memmove(data.VoidPtr, value, length * sizeof(char));
 	}
 	else
 	{
@@ -1284,7 +1284,7 @@ void cRZBaseVariant::RefChar(char const* value, uint32_t length)
 			const size_t dataLength = static_cast<size_t>(length) * sizeof(char);
 
 			data.VoidPtr = operator new[](dataLength);
-			memcpy(data.VoidPtr, value, dataLength);
+			memmove(data.VoidPtr, value, dataLength);
 		}
 	}
 }
@@ -1298,7 +1298,7 @@ void cRZBaseVariant::RefRZUnicodeChar(uint16_t const* value, uint32_t length)
 {
 	if (type == cIGZVariant::Type::RZUnicodeCharArray && count == length && value && data.VoidPtr)
 	{
-		memcpy(data.VoidPtr, value, length * sizeof(uint16_t));
+		memmove(data.VoidPtr, value, length * sizeof(uint16_t));
 	}
 	else
 	{
@@ -1309,7 +1309,7 @@ void cRZBaseVariant::RefRZUnicodeChar(uint16_t const* value, uint32_t length)
 			const size_t dataLength = static_cast<size_t>(length) * sizeof(uint16_t);
 
 			data.VoidPtr = operator new[](dataLength);
-			memcpy(data.VoidPtr, value, dataLength);
+			memmove(data.VoidPtr, value, dataLength);
 		}
 	}
 }
@@ -1323,7 +1323,7 @@ void cRZBaseVariant::RefRZChar(char const* value, uint32_t length)
 {
 	if (type == cIGZVariant::Type::RZCharArray && count == length && value && data.VoidPtr)
 	{
-		memcpy(data.VoidPtr, value, length * sizeof(char));
+		memmove(data.VoidPtr, value, length * sizeof(char));
 	}
 	else
 	{
@@ -1334,7 +1334,7 @@ void cRZBaseVariant::RefRZChar(char const* value, uint32_t length)
 			const size_t dataLength = static_cast<size_t>(length) * sizeof(char);
 
 			data.VoidPtr = operator new[](dataLength);
-			memcpy(data.VoidPtr, value, dataLength);
+			memmove(data.VoidPtr, value, dataLength);
 		}
 	}
 }
@@ -1348,7 +1348,7 @@ void cRZBaseVariant::RefVoidPtr(void** value, uint32_t length)
 {
 	if (type == cIGZVariant::Type::VoidPtrArray && count == length && value && data.VoidPtr)
 	{
-		memcpy(data.VoidPtr, value, length * sizeof(void*));
+		memmove(data.VoidPtr, value, length * sizeof(void*));
 	}
 	else
 	{
@@ -1359,7 +1359,7 @@ void cRZBaseVariant::RefVoidPtr(void** value, uint32_t length)
 			const size_t dataLength = static_cast<size_t>(length) * sizeof(void*);
 
 			data.VoidPtr = operator new[](dataLength);
-			memcpy(data.VoidPtr, value, dataLength);
+			memmove(data.VoidPtr, value, dataLength);
 		}
 	}
 }
@@ -1373,7 +1373,7 @@ void cRZBaseVariant::RefVoid(void* value, uint32_t length)
 {
 	if (type == cIGZVariant::Type::VoidArray && count == length && value && data.VoidPtr)
 	{
-		memcpy(data.VoidPtr, value, length);
+		memmove(data.VoidPtr, value, length);
 	}
 	else
 	{
@@ -1384,7 +1384,7 @@ void cRZBaseVariant::RefVoid(void* value, uint32_t length)
 			const size_t dataLength = static_cast<size_t>(length);
 
 			data.VoidPtr = operator new[](dataLength);
-			memcpy(data.VoidPtr, value, dataLength);
+			memmove(data.VoidPtr, value, dataLength);
 		}
 	}
 }
