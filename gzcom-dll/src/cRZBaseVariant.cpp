@@ -765,6 +765,7 @@ bool cRZBaseVariant::GetValString(cIGZString& value) const
 
 void cRZBaseVariant::SetValString(cIGZString const& value)
 {
+	RefRZChar(value.Data(), value.Strlen());
 }
 
 bool cRZBaseVariant::GetValVoid(void* value, uint32_t& length) const
