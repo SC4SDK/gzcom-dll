@@ -148,7 +148,7 @@ cRZBaseVariant::cRZBaseVariant(cRZBaseVariant&& other) noexcept
 
 cRZBaseVariant::~cRZBaseVariant()
 {
-	Clear();
+	Destroy();
 }
 
 cRZBaseVariant& cRZBaseVariant::operator=(const cIGZVariant& other)
@@ -177,7 +177,7 @@ cRZBaseVariant& cRZBaseVariant::operator=(cRZBaseVariant&& other) noexcept
 		return *this;
 	}
 
-	Clear();
+	Destroy();
 
 	type = other.type;
 	count = other.count;
@@ -298,13 +298,13 @@ uint32_t cRZBaseVariant::GetCount() const
 
 bool cRZBaseVariant::Erase()
 {
-	Clear();
+	Destroy();
 	return true;
 }
 
 bool cRZBaseVariant::CopyFrom(cIGZVariant const& other)
 {
-	Clear();
+	Destroy();
 
 	switch (static_cast<cIGZVariant::Type>(other.GetType()))
 	{
@@ -1394,7 +1394,7 @@ void cRZBaseVariant::RefIGZUnknown(cIGZUnknown* value)
 	}
 }
 
-void cRZBaseVariant::Clear()
+void cRZBaseVariant::Destroy()
 {
 	if ((static_cast<uint16_t>(type) & cIGZVariant::TypeArray) != 0)
 	{
@@ -1422,7 +1422,7 @@ void cRZBaseVariant::Clear()
 
 void cRZBaseVariant::SetType(cIGZVariant::Type newType, uint32_t count)
 {
-	Clear();
+	Destroy();
 	this->type = newType;
 	this->count = count;
 }

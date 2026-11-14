@@ -206,7 +206,7 @@ public:
 
 private:
 
-	void Clear();
+	void Destroy();
 	void SetType(cIGZVariant::Type newType, uint32_t count = 0);
 
 	union
