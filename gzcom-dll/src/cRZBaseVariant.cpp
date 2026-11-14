@@ -783,7 +783,7 @@ bool cRZBaseVariant::GetValVoid(void* value, uint32_t& length) const
 	return false;
 }
 
-void cRZBaseVariant::SetValVoid(void* value, uint32_t length)
+void cRZBaseVariant::SetValVoid(void const* value, uint32_t length)
 {
 	if (type == cIGZVariant::VoidArray && length == count && data.VoidPtr != nullptr)
 	{
@@ -994,7 +994,7 @@ bool* cRZBaseVariant::RefBool() const
 	return static_cast<bool*>(data.VoidPtr);
 }
 
-void cRZBaseVariant::RefBool(bool* value, uint32_t length)
+void cRZBaseVariant::RefBool(bool const* value, uint32_t length)
 {
 	if (type == cIGZVariant::Type::BoolArray && count == length && value && data.VoidPtr)
 	{
@@ -1019,7 +1019,7 @@ uint8_t* cRZBaseVariant::RefUint8() const
 	return static_cast<uint8_t*>(data.VoidPtr);
 }
 
-void cRZBaseVariant::RefUint8(uint8_t* value, uint32_t length)
+void cRZBaseVariant::RefUint8(uint8_t const* value, uint32_t length)
 {
 	if (type == cIGZVariant::Type::Uint8Array && count == length && value && data.VoidPtr)
 	{
@@ -1044,7 +1044,7 @@ int8_t* cRZBaseVariant::RefSint8() const
 	return static_cast<int8_t*>(data.VoidPtr);
 }
 
-void cRZBaseVariant::RefSint8(int8_t* value, uint32_t length)
+void cRZBaseVariant::RefSint8(int8_t const* value, uint32_t length)
 {
 	if (type == cIGZVariant::Type::Sint8Array && count == length && value && data.VoidPtr)
 	{
@@ -1069,7 +1069,7 @@ uint16_t* cRZBaseVariant::RefUint16() const
 	return static_cast<uint16_t*>(data.VoidPtr);
 }
 
-void cRZBaseVariant::RefUint16(uint16_t* value, uint32_t length)
+void cRZBaseVariant::RefUint16(uint16_t const* value, uint32_t length)
 {
 	if (type == cIGZVariant::Type::Uint16Array && count == length && value && data.VoidPtr)
 	{
@@ -1094,7 +1094,7 @@ int16_t* cRZBaseVariant::RefSint16() const
 	return static_cast<int16_t*>(data.VoidPtr);
 }
 
-void cRZBaseVariant::RefSint16(int16_t* value, uint32_t length)
+void cRZBaseVariant::RefSint16(int16_t const* value, uint32_t length)
 {
 	if (type == cIGZVariant::Type::Sint16Array && count == length && value && data.VoidPtr)
 	{
@@ -1119,7 +1119,7 @@ uint32_t* cRZBaseVariant::RefUint32() const
 	return static_cast<uint32_t*>(data.VoidPtr);
 }
 
-void cRZBaseVariant::RefUint32(uint32_t* value, uint32_t length)
+void cRZBaseVariant::RefUint32(uint32_t const* value, uint32_t length)
 {
 	if (type == cIGZVariant::Type::Uint32Array && count == length && value && data.VoidPtr)
 	{
@@ -1144,7 +1144,7 @@ int32_t* cRZBaseVariant::RefSint32() const
 	return static_cast<int32_t*>(data.VoidPtr);
 }
 
-void cRZBaseVariant::RefSint32(int32_t* value, uint32_t length)
+void cRZBaseVariant::RefSint32(int32_t const* value, uint32_t length)
 {
 	if (type == cIGZVariant::Type::Sint32Array && count == length && value && data.VoidPtr)
 	{
@@ -1169,7 +1169,7 @@ uint64_t* cRZBaseVariant::RefUint64() const
 	return static_cast<uint64_t*>(data.VoidPtr);
 }
 
-void cRZBaseVariant::RefUint64(uint64_t* value, uint32_t length)
+void cRZBaseVariant::RefUint64(uint64_t const* value, uint32_t length)
 {
 	if (type == cIGZVariant::Type::Uint64Array && count == length && value && data.VoidPtr)
 	{
@@ -1194,7 +1194,7 @@ int64_t* cRZBaseVariant::RefSint64() const
 	return static_cast<int64_t*>(data.VoidPtr);
 }
 
-void cRZBaseVariant::RefSint64(int64_t* value, uint32_t length)
+void cRZBaseVariant::RefSint64(int64_t const* value, uint32_t length)
 {
 	if (type == cIGZVariant::Type::Sint64Array && count == length && value && data.VoidPtr)
 	{
@@ -1219,7 +1219,7 @@ float* cRZBaseVariant::RefFloat32() const
 	return static_cast<float*>(data.VoidPtr);
 }
 
-void cRZBaseVariant::RefFloat32(float* value, uint32_t length)
+void cRZBaseVariant::RefFloat32(float const* value, uint32_t length)
 {
 	if (type == cIGZVariant::Type::Float32Array && count == length && value && data.VoidPtr)
 	{
@@ -1244,7 +1244,7 @@ double* cRZBaseVariant::RefFloat64() const
 	return static_cast<double*>(data.VoidPtr);
 }
 
-void cRZBaseVariant::RefFloat64(double* value, uint32_t length)
+void cRZBaseVariant::RefFloat64(double const* value, uint32_t length)
 {
 	if (type == cIGZVariant::Type::Float64Array && count == length && value && data.VoidPtr)
 	{
@@ -1269,7 +1269,7 @@ char* cRZBaseVariant::RefChar() const
 	return static_cast<char*>(data.VoidPtr);
 }
 
-void cRZBaseVariant::RefChar(char* value, uint32_t length)
+void cRZBaseVariant::RefChar(char const* value, uint32_t length)
 {
 	if (type == cIGZVariant::Type::CharArray && count == length && value && data.VoidPtr)
 	{
@@ -1294,7 +1294,7 @@ uint16_t* cRZBaseVariant::RefRZUnicodeChar() const
 	return static_cast<uint16_t*>(data.VoidPtr);
 }
 
-void cRZBaseVariant::RefRZUnicodeChar(uint16_t* value, uint32_t length)
+void cRZBaseVariant::RefRZUnicodeChar(uint16_t const* value, uint32_t length)
 {
 	if (type == cIGZVariant::Type::RZUnicodeCharArray && count == length && value && data.VoidPtr)
 	{
@@ -1319,7 +1319,7 @@ char* cRZBaseVariant::RefRZChar() const
 	return static_cast<char*>(data.VoidPtr);
 }
 
-void cRZBaseVariant::RefRZChar(char* value, uint32_t length)
+void cRZBaseVariant::RefRZChar(char const* value, uint32_t length)
 {
 	if (type == cIGZVariant::Type::RZCharArray && count == length && value && data.VoidPtr)
 	{

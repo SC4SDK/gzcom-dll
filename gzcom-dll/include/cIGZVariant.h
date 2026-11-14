@@ -3,7 +3,7 @@
  *
  * cIGZVariant.h
  *
- * Copyright (C) 2023, 2024, 2025 Nicholas Hayes
+ * Copyright (C) 2023, 2024, 2025, 2026 Nicholas Hayes
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -25,8 +25,6 @@
 class cIGZString;
 
 static const uint32_t GZIID_cIGZVariant = 0x60fd4d2b;
-
-
 
 class cIGZVariant : public cIGZUnknown
 {
@@ -143,7 +141,7 @@ public:
 	virtual void SetValString(cIGZString const& value) = 0;
 
 	virtual bool GetValVoid(void* value, uint32_t& length) const = 0;
-	virtual void SetValVoid(void* value, uint32_t length) = 0;
+	virtual void SetValVoid(void const* value, uint32_t length) = 0;
 
 	virtual bool GetValUnknown(cIGZUnknown** outValue) = 0;
 	virtual cIGZUnknown* GetValUnknown() = 0;
@@ -181,33 +179,33 @@ public:
 	virtual void* AsVoidPtr() const = 0;
 
 	virtual bool* RefBool() const = 0;
-	virtual void RefBool(bool* value, uint32_t length) = 0;
+	virtual void RefBool(bool const* value, uint32_t length) = 0;
 	virtual uint8_t* RefUint8() const = 0;
-	virtual void RefUint8(uint8_t* value, uint32_t length) = 0;
+	virtual void RefUint8(uint8_t const* value, uint32_t length) = 0;
 	virtual int8_t* RefSint8() const = 0;
-	virtual void RefSint8(int8_t* value, uint32_t length) = 0;
+	virtual void RefSint8(int8_t const* value, uint32_t length) = 0;
 	virtual uint16_t* RefUint16() const = 0;
-	virtual void RefUint16(uint16_t* value, uint32_t length) = 0;
+	virtual void RefUint16(uint16_t const* value, uint32_t length) = 0;
 	virtual int16_t* RefSint16() const = 0;
-	virtual void RefSint16(int16_t* value, uint32_t length) = 0;
+	virtual void RefSint16(int16_t const* value, uint32_t length) = 0;
 	virtual uint32_t* RefUint32() const = 0;
-	virtual void RefUint32(uint32_t* value, uint32_t length) = 0;
+	virtual void RefUint32(uint32_t const* value, uint32_t length) = 0;
 	virtual int32_t* RefSint32() const = 0;
-	virtual void RefSint32(int32_t* value, uint32_t length) = 0;
+	virtual void RefSint32(int32_t const* value, uint32_t length) = 0;
 	virtual uint64_t* RefUint64() const = 0;
-	virtual void RefUint64(uint64_t* value, uint32_t length) = 0;
+	virtual void RefUint64(uint64_t const* value, uint32_t length) = 0;
 	virtual int64_t* RefSint64() const = 0;
-	virtual void RefSint64(int64_t* value, uint32_t length) = 0;
+	virtual void RefSint64(int64_t const* value, uint32_t length) = 0;
 	virtual float* RefFloat32() const = 0;
-	virtual void RefFloat32(float* value, uint32_t length) = 0;
+	virtual void RefFloat32(float const* value, uint32_t length) = 0;
 	virtual double* RefFloat64() const = 0;
-	virtual void RefFloat64(double* value, uint32_t length) = 0;
+	virtual void RefFloat64(double const* value, uint32_t length) = 0;
 	virtual char* RefChar() const = 0;
-	virtual void RefChar(char* value, uint32_t length) = 0;
+	virtual void RefChar(char const* value, uint32_t length) = 0;
 	virtual uint16_t* RefRZUnicodeChar() const = 0;
-	virtual void RefRZUnicodeChar(uint16_t* value, uint32_t length) = 0;
+	virtual void RefRZUnicodeChar(uint16_t const* value, uint32_t length) = 0;
 	virtual char* RefRZChar() const = 0;
-	virtual void RefRZChar(char* value, uint32_t length) = 0;
+	virtual void RefRZChar(char const* value, uint32_t length) = 0;
 	virtual void** RefVoidPtr() const = 0;
 	virtual void RefVoidPtr(void** value, uint32_t length) = 0;
 	virtual void* RefVoid() const = 0;

@@ -131,7 +131,7 @@ public:
 	void SetValString(cIGZString const& value);
 
 	bool GetValVoid(void* value, uint32_t& length) const;
-	void SetValVoid(void* value, uint32_t length);
+	void SetValVoid(void const* value, uint32_t length);
 
 	bool GetValUnknown(cIGZUnknown** outValue);
 	cIGZUnknown* GetValUnknown();
@@ -169,33 +169,33 @@ public:
 	void* AsVoidPtr() const;
 
 	bool* RefBool() const;
-	void RefBool(bool* value, uint32_t length);
+	void RefBool(bool const* value, uint32_t length);
 	uint8_t* RefUint8() const;
-	void RefUint8(uint8_t* value, uint32_t length);
+	void RefUint8(uint8_t const* value, uint32_t length);
 	int8_t* RefSint8() const;
-	void RefSint8(int8_t* value, uint32_t length);
+	void RefSint8(int8_t const* value, uint32_t length);
 	uint16_t* RefUint16() const;
-	void RefUint16(uint16_t* value, uint32_t length);
+	void RefUint16(uint16_t const* value, uint32_t length);
 	int16_t* RefSint16() const;
-	void RefSint16(int16_t* value, uint32_t length);
+	void RefSint16(int16_t const* value, uint32_t length);
 	uint32_t* RefUint32() const;
-	void RefUint32(uint32_t* value, uint32_t length);
+	void RefUint32(uint32_t const* value, uint32_t length);
 	int32_t* RefSint32() const;
-	void RefSint32(int32_t* value, uint32_t length);
+	void RefSint32(int32_t const* value, uint32_t length);
 	uint64_t* RefUint64() const;
-	void RefUint64(uint64_t* value, uint32_t length);
+	void RefUint64(uint64_t const* value, uint32_t length);
 	int64_t* RefSint64() const;
-	void RefSint64(int64_t* value, uint32_t length);
+	void RefSint64(int64_t const* value, uint32_t length);
 	float* RefFloat32() const;
-	void RefFloat32(float* value, uint32_t length);
+	void RefFloat32(float const* value, uint32_t length);
 	double* RefFloat64() const;
-	void RefFloat64(double* value, uint32_t length);
+	void RefFloat64(double const* value, uint32_t length);
 	char* RefChar() const;
-	void RefChar(char* value, uint32_t length);
+	void RefChar(char const* value, uint32_t length);
 	uint16_t* RefRZUnicodeChar() const;
-	void RefRZUnicodeChar(uint16_t* value, uint32_t length);
+	void RefRZUnicodeChar(uint16_t const* value, uint32_t length);
 	char* RefRZChar() const;
-	void RefRZChar(char* value, uint32_t length);
+	void RefRZChar(char const* value, uint32_t length);
 	void** RefVoidPtr() const;
 	void RefVoidPtr(void** value, uint32_t length);
 	void* RefVoid() const;
