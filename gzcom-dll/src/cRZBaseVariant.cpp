@@ -292,10 +292,10 @@ cRZBaseVariant& cRZBaseVariant::operator=(cRZBaseVariant&& other) noexcept
 	case cIGZVariant::Type::Sint64Array:
 	case cIGZVariant::Type::Float32Array:
 	case cIGZVariant::Type::Float64Array:
-	case cRZBaseVariant::cIGZVariant::Type::CharArray:
-	case cRZBaseVariant::cIGZVariant::Type::RZUnicodeCharArray:
-	case cRZBaseVariant::cIGZVariant::Type::RZCharArray:
-	case cRZBaseVariant::cIGZVariant::Type::VoidPtrArray:
+	case cIGZVariant::Type::CharArray:
+	case cIGZVariant::Type::RZUnicodeCharArray:
+	case cIGZVariant::Type::RZCharArray:
+	case cIGZVariant::Type::VoidPtrArray:
 		data.VoidPtr = other.data.VoidPtr;
 		break;
 	}
