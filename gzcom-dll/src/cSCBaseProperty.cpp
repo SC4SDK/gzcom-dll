@@ -3,7 +3,7 @@
  *
  * cSCBaseProperty.cpp
  *
- * Copyright (C) 2023, 2025 Nicholas Hayes
+ * Copyright (C) 2023, 2025, 2026 Nicholas Hayes
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -26,54 +26,50 @@
 #include "cISC4DBSegmentOStream.h"
 #include <utility>
 
-static const uint32_t GZIID_cSCBaseProperty = 0x151ab0f8;
-
 cSCBaseProperty::cSCBaseProperty()
-	: propertyID(0), propertyValue(), refCount(0)
+	: propertyID(0), propertyValue()
 {
 }
 
 cSCBaseProperty::cSCBaseProperty(uint32_t propertyID)
-	: propertyID(propertyID), propertyValue(), refCount(0)
+	: propertyID(propertyID), propertyValue()
 {
 }
 
 cSCBaseProperty::cSCBaseProperty(uint32_t propertyID, uint32_t value)
-	: propertyID(propertyID), propertyValue(value), refCount(0)
+	: propertyID(propertyID), propertyValue(value)
 {
 }
 
 cSCBaseProperty::cSCBaseProperty(uint32_t propertyID, int32_t value)
-	: propertyID(propertyID), propertyValue(value), refCount(0)
+	: propertyID(propertyID), propertyValue(value)
 {
 }
 
 cSCBaseProperty::cSCBaseProperty(uint32_t propertyID, float value)
-	: propertyID(propertyID), propertyValue(value), refCount(0)
+	: propertyID(propertyID), propertyValue(value)
 {
 }
 
 cSCBaseProperty::cSCBaseProperty(uint32_t propertyID, cIGZVariant const& propertyValue)
-	: propertyID(propertyID), propertyValue(propertyValue), refCount(0)
+	: propertyID(propertyID), propertyValue(propertyValue)
 {
 }
 
 cSCBaseProperty::cSCBaseProperty(uint32_t propertyID, cIGZVariant const* propertyValue)
-	: propertyID(propertyID), propertyValue(propertyValue), refCount(0)
+	: propertyID(propertyID), propertyValue(propertyValue)
 {
 }
 
 cSCBaseProperty::cSCBaseProperty(cISCProperty const& value)
 	: propertyID(value.GetPropertyID()),
-	  propertyValue(value.GetPropertyValue()),
-	  refCount(0)
+	  propertyValue(value.GetPropertyValue())
 {
 }
 
 cSCBaseProperty::cSCBaseProperty(cSCBaseProperty const& value)
 	: propertyID(value.propertyID),
-	  propertyValue(value.propertyValue),
-	  refCount(0)
+	  propertyValue(value.propertyValue)
 {
 }
 
@@ -99,30 +95,27 @@ cSCBaseProperty& cSCBaseProperty::operator=(cSCBaseProperty&& other) noexcept
 
 	propertyID = other.propertyID;
 	propertyValue = std::move(other.propertyValue);
+	mnRefCount = other.mnRefCount;
+
+	other.propertyID = 0;
+	other.mnRefCount = 0;
 
 	return *this;
 }
 
 bool cSCBaseProperty::QueryInterface(uint32_t riid, void** ppvObj)
 {
-	if (riid == GZIID_cSCBaseProperty)
+	if (riid == GZIID_cISCProperty)
 	{
-		AddRef();
-		*ppvObj = this;
-
-		return true;
-	}
-	else if (riid == GZIID_cISCProperty)
-	{
-		AddRef();
 		*ppvObj = static_cast<cISCProperty*>(this);
+		AddRef();
 
 		return true;
 	}
 	else if (riid == GZIID_cIGZUnknown)
 	{
+		*ppvObj = static_cast<cIGZUnknown*>(static_cast<cISCProperty*>(this));
 		AddRef();
-		*ppvObj = static_cast<cIGZUnknown*>(this);
 
 		return true;
 	}
@@ -132,17 +125,12 @@ bool cSCBaseProperty::QueryInterface(uint32_t riid, void** ppvObj)
 
 uint32_t cSCBaseProperty::AddRef()
 {
-	return ++refCount;
+	return cRZUnknown::AddRef();
 }
 
 uint32_t cSCBaseProperty::Release()
 {
-	if (refCount > 0)
-	{
-		--refCount;
-	}
-
-	return refCount;
+	return cRZUnknown::Release();
 }
 
 uint32_t cSCBaseProperty::GetPropertyID() const

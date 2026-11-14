@@ -3,7 +3,7 @@
  *
  * cSCBaseProperty.h
  *
- * Copyright (C) 2023 Nicholas Hayes
+ * Copyright (C) 2023, 2026 Nicholas Hayes
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -24,7 +24,7 @@
 #include "cISCProperty.h"
 #include "cRZBaseVariant.h"
 
-class cSCBaseProperty : public cISCProperty
+class cSCBaseProperty : public cISCProperty, public cRZUnknown
 {
 public:
 
@@ -42,9 +42,13 @@ public:
 	cSCBaseProperty& operator=(const cSCBaseProperty& other);
 	cSCBaseProperty& operator=(cSCBaseProperty&& other) noexcept;
 
+	// cIGZUnknown
+
 	bool QueryInterface(uint32_t riid, void** ppvObj);
 	uint32_t AddRef();
 	uint32_t Release();
+
+	// cISCProperty
 
 	uint32_t GetPropertyID() const;
 	void SetPropertyID(uint32_t value);
@@ -60,5 +64,4 @@ private:
 
 	uint32_t propertyID;
 	cRZBaseVariant propertyValue;
-	uint32_t refCount;
 };
